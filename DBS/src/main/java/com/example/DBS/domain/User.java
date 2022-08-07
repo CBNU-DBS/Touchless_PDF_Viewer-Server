@@ -21,6 +21,8 @@ public class User extends BaseTimeEntity{
 
     private String password;
 
+    private String phone;
+
     @OneToMany(mappedBy = "user")       // Document 클래스에서 User FK 속성 명시
     private List<Document> documents;
 

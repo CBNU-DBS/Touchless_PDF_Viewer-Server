@@ -2,6 +2,7 @@ package com.example.DBS.domain;
 
 
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -18,8 +19,10 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class BaseTimeEntity {
     @CreatedDate
+    @ColumnDefault("CURRENT_TIMESTAMP()")
     private LocalDateTime createdDate;
 
     @LastModifiedDate
+    @ColumnDefault("CURRENT_TIMESTAMP()")
     private LocalDateTime lastModifiedDate;
 }
