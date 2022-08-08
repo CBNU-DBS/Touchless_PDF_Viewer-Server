@@ -26,6 +26,9 @@ public class User extends BaseTimeEntity{
     @OneToMany(mappedBy = "user")       // Document 클래스에서 User FK 속성 명시
     private List<Document> documents;
 
+    @OneToMany(mappedBy = "user")
+    private List<MotionFunction> motionFunctionList;
+
     public void addDocument(Document document){
         this.documents.add(document);
     }
