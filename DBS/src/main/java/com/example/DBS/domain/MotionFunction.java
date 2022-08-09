@@ -30,4 +30,5 @@ public class MotionFunction {
         this.motion = motion;
         this.function = function;
     }
+
 }

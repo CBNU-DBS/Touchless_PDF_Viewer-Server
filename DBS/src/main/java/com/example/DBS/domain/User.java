@@ -32,4 +32,5 @@ public class User extends BaseTimeEntity{
     public void addDocument(Document document){
         this.documents.add(document);
     }
+
 }
