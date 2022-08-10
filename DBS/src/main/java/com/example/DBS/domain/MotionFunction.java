@@ -4,31 +4,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter @Setter
 public class MotionFunction {
-
     @Id
     @GeneratedValue
     @Column(name = "motion_function_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Convert(converter = MotionConverter.class)
+    @ManyToOne
+    @JoinColumn(name = "motion_id")
     private Motion motion;
 
-    @Convert(converter = FunctionConverter.class)
+    @ManyToOne
+    @JoinColumn(name = "function_id")
     private Function function;
-
-    public MotionFunction(Long id, User user, Motion motion, Function function) {
-        this.id = id;
-        this.user = user;
-        this.motion = motion;
-        this.function = function;
-    }
-
 }
