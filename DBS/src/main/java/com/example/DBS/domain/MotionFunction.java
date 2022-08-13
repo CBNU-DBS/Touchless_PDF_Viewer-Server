@@ -4,10 +4,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter @Setter
+@Table(
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "user_motion_uq", columnNames = {"user_id", "motion_id"}
+                ),
+                @UniqueConstraint(
+                        name = "user_function_uq", columnNames = {"user_id", "function_id"}
+                )
+        }
+)
 public class MotionFunction {
     @Id
     @GeneratedValue
@@ -25,4 +34,5 @@ public class MotionFunction {
     @ManyToOne
     @JoinColumn(name = "function_id")
     private Function function;
+
 }

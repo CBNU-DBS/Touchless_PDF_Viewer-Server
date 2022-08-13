@@ -35,7 +35,7 @@ public class UserRepository {
      */
     public List<User> findAll(){
         // jpql
-        return em.createQuery("select u from User u", User.class)
+        return em.createQuery("SELECT u FROM User u", User.class)
                 .getResultList();
     }
 
@@ -45,7 +45,7 @@ public class UserRepository {
      * @return  유저 리스트
      */
     public List<User> findByEmail(String email){
-        return em.createQuery("select u from User u WHERE u.email = :email", User.class)
+        return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
                 .setParameter("email", email)
                 .getResultList();
     }
@@ -57,7 +57,7 @@ public class UserRepository {
      * @return User 클래스
      */
     public User findByEmailAndPassword(String email, String password){
-        return em.createQuery("select u from User u WHERE u.email = :email and u.password = :password", User.class)
+        return em.createQuery("SELECT u FROM User u WHERE u.email = :email and u.password = :password", User.class)
                 .setParameter("email", email)
                 .setParameter("password", password)
                 .getSingleResult();
