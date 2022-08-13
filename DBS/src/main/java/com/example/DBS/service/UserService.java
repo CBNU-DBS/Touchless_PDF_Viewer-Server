@@ -69,8 +69,6 @@ public class UserService {
         if(!inputPassword.equals(findPassword)){
             throw new IllegalStateException("비밀번호가 유효하지 않습니다.");
         }
-
         return findUsers.get(0);
-
     }
 }
