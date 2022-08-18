@@ -1,6 +1,6 @@
 package com.example.DBS.repository;
 
-import com.example.DBS.domain.Function;
+import com.example.DBS.domain.Func;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -14,18 +14,18 @@ public class FunctionRepository {
 
     /**
      * 기능 저장
-     * @param function
+     * @param func
      */
-    public void save(Function function){
-        em.persist(function);
+    public void save(Func func){
+        em.persist(func);
     }
 
     /**
      * 기능 리스트 가져오기
      * @return
      */
-    public List<Function> findAll(){
-        return em.createQuery("SELECT f FROM Function f", Function.class)
+    public List<Func> findAll(){
+        return em.createQuery("SELECT f FROM Function f", Func.class)
                 .getResultList();
     }
 
@@ -34,8 +34,8 @@ public class FunctionRepository {
      * @param name
      * @return
      */
-    public Function findByName(String name){
-        return em.createQuery("SELECT f FROM Function f WHERE f.name = :name", Function.class)
+    public Func findByName(String name){
+        return em.createQuery("SELECT f FROM Function f WHERE f.name = :name", Func.class)
                 .setParameter("name", name)
                 .getSingleResult();
     }

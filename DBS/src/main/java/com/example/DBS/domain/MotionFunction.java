@@ -33,6 +33,6 @@ public class MotionFunction {
 
     @ManyToOne
     @JoinColumn(name = "function_id")
-    private Function function;
+    private Func func;
 
 }
