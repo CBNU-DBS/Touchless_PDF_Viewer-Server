@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-public class Function {
+public class Func {
     @Id
     @GeneratedValue
     @Column(name = "function_id")
