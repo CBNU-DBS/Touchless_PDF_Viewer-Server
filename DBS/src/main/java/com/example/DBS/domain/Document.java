@@ -14,14 +14,16 @@ public class Document extends BaseTimeEntity {
     @Column(name = "doc_id")
     private Long id;
 
+    //제목
     private String title;
 
+    //
     private String location;
 
     private LocalDateTime date;
-
+    // pdf
     private String type;
-
+    // s3 url
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)      // 1:N 관계에서 N쪽에 붙임, FetchType.LAZY = 지연로딩 설정
