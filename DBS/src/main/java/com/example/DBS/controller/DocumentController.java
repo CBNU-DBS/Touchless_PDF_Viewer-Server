@@ -1,27 +1,28 @@
 package com.example.DBS.controller;
 
+import com.example.DBS.DTO.DocumentDTO;
 import com.example.DBS.domain.BaseResponseBody;
 import com.example.DBS.domain.CustomResponseBody;
-import com.example.DBS.domain.User;
-import com.example.DBS.service.MotionFunctionService;
-import com.example.DBS.service.UserService;
+import com.example.DBS.domain.Document;
+import com.example.DBS.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController {
-    private final UserService userService;
+public class DocumentController {
+    private final DocumentService documentService;
 
-    @PostMapping("/users")
-    public ResponseEntity<BaseResponseBody> signup (@RequestBody User user){
-        BaseResponseBody responseBody = new CustomResponseBody<>("회원가입 성공");
+    @PostMapping("/document")
+    public ResponseEntity<BaseResponseBody> saveDocument(@RequestBody DocumentDTO requestBody){
+        BaseResponseBody responseBody = new BaseResponseBody("문서 저장 성공");
         try {
-            Long userId = userService.signUp(user);
+            documentService.saveDocument(requestBody);
         } catch (RuntimeException re){
             responseBody.setResultCode(-1);
             responseBody.setResultMsg(re.getMessage());
@@ -32,15 +33,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
         }
 
-        return ResponseEntity.ok().body(responseBody);
+        return ResponseEntity.ok(responseBody);
     }
 
-    @PostMapping("/users/login")
-    public ResponseEntity login (@RequestBody User user){
-        CustomResponseBody<User> responseBody = new CustomResponseBody<>("로그인 성공");
-        try {
-            User loginUser = userService.login(user);
-            responseBody.getList().add(loginUser);
+    @GetMapping("/documents")
+    public ResponseEntity<CustomResponseBody<DocumentDTO>> findDocumentsByUser(@RequestParam(name = "userId") Long userId){
+        CustomResponseBody<DocumentDTO> responseBody = new CustomResponseBody<>("문서 검색 성공");
+        try{
+            List<DocumentDTO> list = new ArrayList<>();
+            list = documentService.findDocumentByUser(userId);
+            responseBody.setList(list);
         } catch (RuntimeException re){
             responseBody.setResultCode(-1);
             responseBody.setResultMsg(re.getMessage());
@@ -50,6 +52,7 @@ public class UserController {
             responseBody.setResultMsg(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
         }
-        return ResponseEntity.ok().body(responseBody);
+
+        return ResponseEntity.ok(responseBody);
     }
 }

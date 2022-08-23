@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class FunctionRepository {
+public class FuncRepository {
     private final EntityManager em;
 
     /**
@@ -25,7 +25,7 @@ public class FunctionRepository {
      * @return
      */
     public List<Func> findAll(){
-        return em.createQuery("SELECT f FROM Function f", Func.class)
+        return em.createQuery("SELECT f FROM Func f", Func.class)
                 .getResultList();
     }
 
@@ -35,7 +35,7 @@ public class FunctionRepository {
      * @return
      */
     public Func findByName(String name){
-        return em.createQuery("SELECT f FROM Function f WHERE f.name = :name", Func.class)
+        return em.createQuery("SELECT f FROM Func f WHERE f.name = :name", Func.class)
                 .setParameter("name", name)
                 .getSingleResult();
     }

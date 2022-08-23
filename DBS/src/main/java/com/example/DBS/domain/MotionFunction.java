@@ -13,7 +13,7 @@ import javax.persistence.*;
                         name = "user_motion_uq", columnNames = {"user_id", "motion_id"}
                 ),
                 @UniqueConstraint(
-                        name = "user_function_uq", columnNames = {"user_id", "function_id"}
+                        name = "user_function_uq", columnNames = {"user_id", "func_id"}
                 )
         }
 )
@@ -32,7 +32,7 @@ public class MotionFunction {
     private Motion motion;
 
     @ManyToOne
-    @JoinColumn(name = "function_id")
+    @JoinColumn(name = "func_id")
     private Func func;
 
 }
