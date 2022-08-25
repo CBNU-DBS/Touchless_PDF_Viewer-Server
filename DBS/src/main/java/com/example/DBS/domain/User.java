@@ -29,8 +29,5 @@ public class User extends BaseTimeEntity{
     @OneToMany(mappedBy = "user")
     private List<MotionFunction> motionFunctionList;
 
-    public void addDocument(Document document){
-        this.documents.add(document);
-    }
 
 }

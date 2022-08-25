@@ -5,7 +5,7 @@ import com.example.DBS.domain.Func;
 import com.example.DBS.domain.Motion;
 import com.example.DBS.domain.MotionFunction;
 import com.example.DBS.domain.User;
-import com.example.DBS.repository.FunctionRepository;
+import com.example.DBS.repository.FuncRepository;
 import com.example.DBS.repository.MotionFunctionRepository;
 import com.example.DBS.repository.MotionRepository;
 import com.example.DBS.repository.UserRepository;
@@ -23,7 +23,7 @@ public class MotionFunctionService {
     private final MotionFunctionRepository motionFunctionRepository;
     private final UserRepository userRepository;
     private final MotionRepository motionRepository;
-    private final FunctionRepository functionRepository;
+    private final FuncRepository funcRepository;
     @Transactional
     public void saveMotionFunction(List<MotionFunctionDTO> motionFunctionList){
         Long userId = motionFunctionList.get(0).getUserId();
@@ -35,7 +35,7 @@ public class MotionFunctionService {
                 throw new IllegalStateException("유저 ID가 잘못되었습니다.");
             }
             motion = motionRepository.findByName(motionFunctionDTO.getMotion());
-            func = functionRepository.findByName(motionFunctionDTO.getFunction());
+            func = funcRepository.findByName(motionFunctionDTO.getFunction());
             if(motion == null || func == null){
                 throw new IllegalStateException("모션, 기능 이름이 잘못되었습니다.");
             }
@@ -43,20 +43,6 @@ public class MotionFunctionService {
             motionFunction.setUser(user);
             motionFunction.setMotion(motion);
             motionFunction.setFunc(func);
-            motionFunctionRepository.save(motionFunction);
-        }
-    }
-
-    @Transactional
-    public void setDefaultMotionSetting(Long userId){
-        User user = userRepository.findOne(userId);
-        List<Motion> motions = motionRepository.findAll();
-        List<Func> funcs = functionRepository.findAll();
-        for(int i = 0; i<7; i++){
-            MotionFunction motionFunction = new MotionFunction();
-            motionFunction.setUser(user);
-            motionFunction.setMotion(motions.get(i));
-            motionFunction.setFunc(funcs.get(i));
             motionFunctionRepository.save(motionFunction);
         }
     }

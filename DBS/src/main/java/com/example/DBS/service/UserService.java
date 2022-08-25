@@ -1,6 +1,12 @@
 package com.example.DBS.service;
 
+import com.example.DBS.domain.Func;
+import com.example.DBS.domain.Motion;
+import com.example.DBS.domain.MotionFunction;
 import com.example.DBS.domain.User;
+import com.example.DBS.repository.FuncRepository;
+import com.example.DBS.repository.MotionFunctionRepository;
+import com.example.DBS.repository.MotionRepository;
 import com.example.DBS.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,14 +21,26 @@ import java.util.List;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class UserService {
-
+    private final MotionFunctionRepository motionFunctionRepository;
     private final UserRepository userRepository;
+    private final MotionRepository motionRepository;
+    private final FuncRepository funcRepository;
 
     @Transactional
     public Long signUp(User user){
         validateDuplicateUser(user);
         user.setPassword(getEncryptPassword(user.getPassword()));
         userRepository.save(user);
+
+        List<Motion> motions = motionRepository.findAll();
+        List<Func> funcs = funcRepository.findAll();
+        for(int i = 0; i<7; i++){
+            MotionFunction motionFunction = new MotionFunction();
+            motionFunction.setUser(user);
+            motionFunction.setMotion(motions.get(i));
+            motionFunction.setFunc(funcs.get(i));
+            motionFunctionRepository.save(motionFunction);
+        }
         return user.getId();
     }
 

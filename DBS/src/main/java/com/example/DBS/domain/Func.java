@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Func {
     @Id
     @GeneratedValue
-    @Column(name = "function_id")
+    @Column(name = "func_id")
     private Long id;
 
     private String name;
