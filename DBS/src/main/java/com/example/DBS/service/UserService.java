@@ -89,4 +89,16 @@ public class UserService {
         }
         return findUsers.get(0);
     }
+
+    @Transactional
+    public void changepassword(User user){
+        String newpw = getEncryptPassword(user.getPassword());
+        user.setPassword(newpw);
+        userRepository.changepasswordById(user.getId(), user.getPassword());
+        System.out.println("입력된 후 패스워드값 확인 : " + user.getPassword());
+        // 비밀번호가 정상적으로 변경되었는지 확인합니다.
+        if(user.getPassword() != newpw){
+            throw new IllegalStateException("비밀번호가 변경되지 않았습니다.");
+        }
+    }
 }

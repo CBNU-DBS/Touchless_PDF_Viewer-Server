@@ -2,6 +2,7 @@ package com.example.DBS.repository;
 
 import com.example.DBS.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -61,5 +62,22 @@ public class UserRepository {
                 .setParameter("email", email)
                 .setParameter("password", password)
                 .getSingleResult();
+    }
+
+    /**
+     * 아이디를 통해 유저 검색 후, 패스워드 변경
+     * @param id
+     * @param password
+     * @return User 클래스
+     */
+    @Modifying(clearAutomatically = true)
+    public void changepasswordById(Long id, String password){
+        System.out.println("password = " + password);
+        em.createQuery("UPDATE User u SET u.password = :password WHERE u.id = :id")
+                .setParameter("password",password)
+                .setParameter("id",id)
+                .executeUpdate();
+
+        em.clear();
     }
 }

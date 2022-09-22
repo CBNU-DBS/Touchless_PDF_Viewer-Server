@@ -1,5 +1,6 @@
 package com.example.DBS.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ public class User extends BaseTimeEntity{
     private List<Document> documents;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private List<MotionFunction> motionFunctionList;
 
 
