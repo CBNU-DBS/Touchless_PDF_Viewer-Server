@@ -36,7 +36,7 @@ public class DocumentController {
         return ResponseEntity.ok(responseBody);
     }
 
-    @GetMapping("/documents")
+    @GetMapping("/document")
     public ResponseEntity<CustomResponseBody<DocumentDTO>> findDocumentsByUser(@RequestParam(name = "userId") Long userId){
         CustomResponseBody<DocumentDTO> responseBody = new CustomResponseBody<>("문서 검색 성공");
         try{

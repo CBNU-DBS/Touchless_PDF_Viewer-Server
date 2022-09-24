@@ -9,10 +9,7 @@ import com.example.DBS.service.MotionFunctionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +38,11 @@ public class MotionFunctionController {
     }
 
     @GetMapping("/motionfunction")
-    public ResponseEntity<CustomResponseBody<MotionFunctionDTO>> getMotionFunction(@RequestBody User user){
+    public ResponseEntity<CustomResponseBody<MotionFunctionDTO>> getMotionFunction(@RequestParam(name = "userId") Long userId){
         CustomResponseBody<MotionFunctionDTO> responseBody = new CustomResponseBody<>("");
         List<MotionFunctionDTO> list = null;
         try{
-            list = motionFunctionService.getMotionFunctionByUser(user.getId());
+            list = motionFunctionService.getMotionFunctionByUser(userId);
             responseBody.setList(list);
         } catch (RuntimeException re){
             responseBody.setResultCode(-1);
