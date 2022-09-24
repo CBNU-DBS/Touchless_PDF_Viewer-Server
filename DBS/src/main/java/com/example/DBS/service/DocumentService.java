@@ -38,7 +38,7 @@ public class DocumentService {
         Document document = new Document();
         document.setTitle(documentDTO.getTitle());
         document.setUser(findUser);
-        document.setLocation(documentDTO.getLocation());
+        document.setKey(documentDTO.getKey());
 
         documentRepository.save(document);
     }
@@ -55,7 +55,7 @@ public class DocumentService {
 
         findDocuments = documentRepository.findByUser(findUser);
         for(Document findDoc : findDocuments){
-            DocumentDTO doc = new DocumentDTO(findDoc.getId(), findDoc.getUser().getId(), findDoc.getTitle(), findDoc.getLocation(), findDoc.getCreatedDate(), findDoc.getLastModifiedDate());
+            DocumentDTO doc = new DocumentDTO(findDoc.getId(), findDoc.getUser().getId(), findDoc.getTitle(), findDoc.getKey(), findDoc.getCreatedDate(), findDoc.getLastModifiedDate());
             result.add(doc);
         }
 

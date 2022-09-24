@@ -10,15 +10,15 @@ public class DocumentDTO {
     private Long id;
     private Long userId;
     private String title;
-    private String location;
+    private String key;
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
 
-    public DocumentDTO(Long id, Long userId, String title, String location, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+    public DocumentDTO(Long id, Long userId, String title, String key, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
         this.id = id;
         this.userId = userId;
         this.title = title;
-        this.location = location;
+        this.key = key;
         this.createdDate = createdDate;
         this.lastModifiedDate = lastModifiedDate;
     }
