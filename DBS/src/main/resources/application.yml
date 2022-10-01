@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/DBS
+    url: jdbc:mysql://15.164.134.221:3306/DBS
     username: root
-    password: 12340119
+    password: Ot)J*ijAP59j
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
