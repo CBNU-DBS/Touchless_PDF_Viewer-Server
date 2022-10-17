@@ -8,13 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-@Table(
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "user_motion_func_uq", columnNames = {"user_id", "motion_id", "func_id"}
-                )
-        }
-)
 public class MotionFunction {
     @Id
     @GeneratedValue
@@ -24,7 +17,6 @@ public class MotionFunction {
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "user_id")
-    @JsonBackReference
     private User user;
 
     @ManyToOne
