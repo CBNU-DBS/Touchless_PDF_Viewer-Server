@@ -1,9 +1,11 @@
 package com.example.DBS.controller;
 
+import com.example.DBS.DTO.LoginResultDTO;
+import com.example.DBS.DTO.MotionFunctionDTO;
 import com.example.DBS.domain.BaseResponseBody;
 import com.example.DBS.domain.CustomResponseBody;
+import com.example.DBS.domain.MotionFunction;
 import com.example.DBS.domain.User;
-import com.example.DBS.service.MotionFunctionService;
 import com.example.DBS.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,10 +39,19 @@ public class UserController {
 
     @PostMapping("/users/login")
     public ResponseEntity login (@RequestBody User user){
-        CustomResponseBody<User> responseBody = new CustomResponseBody<>("로그인 성공");
+        CustomResponseBody<LoginResultDTO> responseBody = new CustomResponseBody<>("로그인 성공");
+        LoginResultDTO loginResultDTO = new LoginResultDTO();
         try {
             User loginUser = userService.login(user);
-            responseBody.getList().add(loginUser);
+            loginResultDTO.setId(loginResultDTO.getId());
+            loginResultDTO.setName(loginResultDTO.getName());
+            loginResultDTO.setEmail(loginResultDTO.getEmail());
+            loginResultDTO.setPassword(loginResultDTO.getPassword());
+            loginResultDTO.setPhone(loginResultDTO.getPhone());
+            for (MotionFunction motionFunction: loginUser.getMotionFunctionList()) {
+                loginResultDTO.getMotionFunctionDTOList().add(new MotionFunctionDTO(loginUser.getId(), motionFunction.getMotion().getName(), motionFunction.getFunc().getName()));
+            }
+            responseBody.getList().add(loginResultDTO);
         } catch (RuntimeException re){
             responseBody.setResultCode(-1);
             responseBody.setResultMsg(re.getMessage());
