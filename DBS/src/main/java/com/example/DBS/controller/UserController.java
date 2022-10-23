@@ -43,11 +43,11 @@ public class UserController {
         LoginResultDTO loginResultDTO = new LoginResultDTO();
         try {
             User loginUser = userService.login(user);
-            loginResultDTO.setId(loginResultDTO.getId());
-            loginResultDTO.setName(loginResultDTO.getName());
-            loginResultDTO.setEmail(loginResultDTO.getEmail());
-            loginResultDTO.setPassword(loginResultDTO.getPassword());
-            loginResultDTO.setPhone(loginResultDTO.getPhone());
+            loginResultDTO.setId(loginUser.getId());
+            loginResultDTO.setName(loginUser.getName());
+            loginResultDTO.setEmail(loginUser.getEmail());
+            loginResultDTO.setPassword(loginUser.getPassword());
+            loginResultDTO.setPhone(loginUser.getPhone());
             for (MotionFunction motionFunction: loginUser.getMotionFunctionList()) {
                 loginResultDTO.getMotionFunctionDTOList().add(new MotionFunctionDTO(loginUser.getId(), motionFunction.getMotion().getName(), motionFunction.getFunc().getName()));
             }
