@@ -42,7 +42,7 @@ public class UserRepository {
 
     /**
      * 이메일로 유저 검색
-     * @param email
+     * @param email 이메일
      * @return  유저 리스트
      */
     public List<User> findByEmail(String email){
@@ -54,8 +54,8 @@ public class UserRepository {
 
     /**
      * 이메일, 패스워드로 유저 검색
-     * @param email
-     * @param password
+     * @param email 이메일
+     * @param password 비밀번호
      * @return User 클래스
      */
     public User findByEmailAndPassword(String email, String password){
@@ -67,8 +67,8 @@ public class UserRepository {
 
     /**
      * 아이디를 통해 유저 검색 후, 패스워드 변경
-     * @param id
-     * @param password
+     * @param id 이메일
+     * @param password 비밀번호
      * @return User 클래스
      */
     @Modifying(clearAutomatically = true)

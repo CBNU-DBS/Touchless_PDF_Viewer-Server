@@ -21,9 +21,10 @@ public class DocumentController {
     private final DocumentService documentService;
 
     /**
-     * Document 저장 API*
-     * @param requestBody
-     * @return
+     * Document 저장 API
+     * 문서 정보를 받아서 DB에 저장
+     * @param requestBody 문서 정보
+     * @return 성공 여부
      */
     @PostMapping("/document")
     public ResponseEntity<BaseResponseBody> saveDocument(@RequestBody DocumentDTO requestBody){
@@ -44,9 +45,10 @@ public class DocumentController {
     }
 
     /**
-     * Document 리스트 조회 API*
-     * @param userId
-     * @return
+     * Document 리스트 조회 API
+     * userId를 받아서 해당하는 문서 리스트 반환
+     * @param userId 유저 아이디
+     * @return 성공 여부, 문서 리스
      */
     @GetMapping("/document")
     public ResponseEntity<CustomResponseBody<DocumentDTO>> findDocumentsByUser(@RequestParam(name = "userId") Long userId){

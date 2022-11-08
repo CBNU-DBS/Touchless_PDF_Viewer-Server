@@ -15,7 +15,7 @@ public class MotionFunctionRepository {
 
     /**
      * 모션 기능 설정 저장
-     * @param motionFunction
+     * @param motionFunction 모션, 기능 설정
      */
     public void save(MotionFunction motionFunction){
         em.persist(motionFunction);
@@ -23,8 +23,8 @@ public class MotionFunctionRepository {
 
     /**
      *  사용자에 해당하는 모션 기능 설정 조회
-     * @param user
-     * @return
+     * @param user 유저 정보
+     * @return 모션, 기능 설정
      */
     public List<MotionFunction> findByUser(User user){
         return em.createQuery("SELECT mf FROM MotionFunction mf WHERE mf.user = :user", MotionFunction.class)

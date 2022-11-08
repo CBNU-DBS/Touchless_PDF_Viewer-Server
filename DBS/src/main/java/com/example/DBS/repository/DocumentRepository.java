@@ -15,7 +15,7 @@ public class DocumentRepository {
 
     /**
      * 문서 저장
-     * @param document
+     * @param document 문서
      */
     public void save(Document document){
         em.persist(document);
@@ -23,16 +23,16 @@ public class DocumentRepository {
 
     /**
      * id로 문서 찾기
-     * @param id
-     * @return
+     * @param id 문서 아이디
+     * @return 문서
      */
     public Document findById(Long id){
         return em.find(Document.class, id);
     }
     /**
      * 해당 User 문서 찾기
-     * @param user
-     * @return
+     * @param user 유저 정보
+     * @return 문서 리스트
      */
     public List<Document> findByUser(User user){
         return em.createQuery("SELECT d FROM Document d WHERE d.user =:user", Document.class)
@@ -42,8 +42,8 @@ public class DocumentRepository {
 
     /**
      * 문서 제목으로 문서 찾기
-     * @param title
-     * @return
+     * @param title 문서 제목
+     * @return 문서 리스트
      */
     public List<Document> findByTitle(String title){
         return em.createQuery("SELECT d FROM Document d WHERE d.title = :title", Document.class)
@@ -53,7 +53,7 @@ public class DocumentRepository {
 
     /**
      * id로 문서 삭제
-     * @param id
+     * @param id 문서 아이디
      */
     public void deleteById(Long id){
         Document target = findById(id);

@@ -30,8 +30,8 @@ public class UserService {
 
     /**
      * 회원가입 관련 서비스 로직
-     * @param user
-     * @return
+     * @param user 유저 정보
+     * @return 유저 아이디
      */
     @Transactional
     public Long signUp(User user){
@@ -53,7 +53,7 @@ public class UserService {
 
     /**
      * 비밀번호 암호화
-     * @param password
+     * @param password 비밀번호
      * @return  암호화된 비밀번호
      */
     private String getEncryptPassword(String password){
@@ -85,8 +85,8 @@ public class UserService {
 
     /**
      * 로그인 관련 서비스 로직
-     * @param user
-     * @return
+     * @param user 유저 정보
+     * @return 로그인한 유저 정보
      */
     @Transactional
     public User login(User user){
@@ -104,7 +104,7 @@ public class UserService {
 
     /**
      * 비밀번호 변경 서비스 로직
-     * @param user
+     * @param user 유저 정보
      */
     @Transactional
     public void changepassword(User user){

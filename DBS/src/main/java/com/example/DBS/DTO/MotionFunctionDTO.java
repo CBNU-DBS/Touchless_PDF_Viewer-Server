@@ -9,8 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MotionFunctionDTO {
+    // 유저 아이디
     private Long userId;
+    // 모션
     private String motion;
+    // 기능
     private String function;
 
     public MotionFunctionDTO(Long userId, String motion, String function) {

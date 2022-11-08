@@ -22,9 +22,10 @@ public class MotionFunctionController {
     private final MotionFunctionService motionFunctionService;
 
     /**
-     * Motion, Function 설정 저장 API*
-     * @param requestBody
-     * @return
+     * Motion, Function 설정 저장 API
+     * 모션, 설정을 받아서 DB에 저장
+     * @param requestBody 모션 기능 설정
+     * @return 성공 여부
      */
     @PostMapping("/motionfunction")
     public ResponseEntity<BaseResponseBody> saveMotionSetting(@RequestBody List<MotionFunctionDTO> requestBody){
@@ -45,9 +46,10 @@ public class MotionFunctionController {
     }
 
     /**
-     * 유저별 Motion, Function 설정 조회 API*
-     * @param userId
-     * @return
+     * 유저별 Motion, Function 설정 조회 API
+     * userId를 받아서 해당하는 모션 기능 설정 반환
+     * @param userId 유저 아이디
+     * @return 성공 여부, 모션 기능 설정
      */
     @GetMapping("/motionfunction")
     public ResponseEntity<CustomResponseBody<MotionFunctionDTO>> getMotionFunction(@RequestParam(name = "userId") Long userId){

@@ -23,9 +23,10 @@ public class UserController {
     private final UserService userService;
 
     /**
-     * User 회원가입 API*
-     * @param user
-     * @return
+     * User 회원가입 API
+     * 회원 정보 DB에 저장
+     * @param user 유저 정보
+     * @return 성공 여부
      */
     @PostMapping("/users")
     public ResponseEntity<BaseResponseBody> signup (@RequestBody User user){
@@ -47,8 +48,9 @@ public class UserController {
 
     /**
      * 로그인 API
-     * @param user
-     * @return
+     * userId, pw를 받아서 로그인 성공 여부 반환
+     * @param user 유저 정보
+     * @return 성공 여부
      */
     @PostMapping("/users/login")
     public ResponseEntity login (@RequestBody User user){
@@ -79,8 +81,9 @@ public class UserController {
 
     /**
      * 비밀번호 변경 API
-     * @param user
-     * @return
+     * 유저 정보와 변경할 비밀번호를 받아서 비밀번호 변경
+     * @param user 유저 정보, 변경할 비밀번호
+     * @return 성공 여부
      */
     @PostMapping("/users/changepw")
     public ResponseEntity changepw (@RequestBody User user){

@@ -15,15 +15,15 @@ public class MotionRepository {
 
     /**
      * 모션 저장
-     * @param function
+     * @param motion 모션
      */
-    public void save(Motion function){
-        em.persist(function);
+    public void save(Motion motion){
+        em.persist(motion);
     }
 
     /**
      * 모션 리스트 가져오기
-     * @return
+     * @return 모션 리스트
      */
     public List<Motion> findAll(){
         return em.createQuery("SELECT m FROM Motion m", Motion.class)
@@ -32,8 +32,8 @@ public class MotionRepository {
 
     /**
      * 이름으로 모션 가져오기
-     * @param name
-     * @return
+     * @param name 모션 이름
+     * @return 모션 리스트
      */
     public Motion findByName(String name){
         return em.createQuery("SELECT m FROM Motion m WHERE m.name = :name", Motion.class)

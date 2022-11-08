@@ -30,7 +30,7 @@ public class MotionFunctionService {
 
     /**
      * 모션 기능 설정 저장 서비스 로직
-     * @param motionFunctionList
+     * @param motionFunctionList 모션 기능 설정 정보
      */
     @Transactional
     public void saveMotionFunction(List<MotionFunctionDTO> motionFunctionList){
@@ -57,8 +57,8 @@ public class MotionFunctionService {
 
     /**
      * userId로 모션 설정 조회하는 서비스 로직
-     * @param userId
-     * @return
+     * @param userId 유저 아이디
+     * @return 모션 기능 설정
      */
     public List<MotionFunctionDTO> getMotionFunctionByUser(Long userId){
         User user = userRepository.findOne(userId);

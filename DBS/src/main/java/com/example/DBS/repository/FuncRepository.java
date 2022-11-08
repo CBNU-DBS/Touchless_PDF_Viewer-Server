@@ -14,7 +14,7 @@ public class FuncRepository {
 
     /**
      * 기능 저장
-     * @param func
+     * @param func 기능
      */
     public void save(Func func){
         em.persist(func);
@@ -22,7 +22,7 @@ public class FuncRepository {
 
     /**
      * 기능 리스트 가져오기
-     * @return
+     * @return 기능 리스트
      */
     public List<Func> findAll(){
         return em.createQuery("SELECT f FROM Func f", Func.class)
@@ -31,8 +31,8 @@ public class FuncRepository {
 
     /**
      * 이름으로 기능 가져오기
-     * @param name
-     * @return
+     * @param name 기능 이름
+     * @return 기능
      */
     public Func findByName(String name){
         return em.createQuery("SELECT f FROM Func f WHERE f.name = :name", Func.class)

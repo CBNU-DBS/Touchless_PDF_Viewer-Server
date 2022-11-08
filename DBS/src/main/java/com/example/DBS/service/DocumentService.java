@@ -24,7 +24,7 @@ public class DocumentService {
 
     /**
      * 문서 저장 서비스 로직
-     * @param documentDTO
+     * @param documentDTO 문서 정보
      */
     @Transactional
     public void saveDocument(DocumentDTO documentDTO){
@@ -52,8 +52,8 @@ public class DocumentService {
 
     /**
      * userId로 문서 리스트 조회하는 서비스 로직
-     * @param userId
-     * @return
+     * @param userId 유저 아이디
+     * @return 문서 리스트
      */
     public List<DocumentDTO> findDocumentByUser(Long userId){
         List<Document> findDocuments = null;
