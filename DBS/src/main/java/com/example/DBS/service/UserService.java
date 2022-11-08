@@ -12,11 +12,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+/**
+ * User 관련 서비스 로직
+ */
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -26,6 +28,11 @@ public class UserService {
     private final MotionRepository motionRepository;
     private final FuncRepository funcRepository;
 
+    /**
+     * 회원가입 관련 서비스 로직
+     * @param user
+     * @return
+     */
     @Transactional
     public Long signUp(User user){
         validateDuplicateUser(user);
@@ -76,6 +83,11 @@ public class UserService {
         }
     }
 
+    /**
+     * 로그인 관련 서비스 로직
+     * @param user
+     * @return
+     */
     @Transactional
     public User login(User user){
         List<User> findUsers = userRepository.findByEmail(user.getEmail());
@@ -90,6 +102,10 @@ public class UserService {
         return findUsers.get(0);
     }
 
+    /**
+     * 비밀번호 변경 서비스 로직
+     * @param user
+     */
     @Transactional
     public void changepassword(User user){
         String newpw = getEncryptPassword(user.getPassword());

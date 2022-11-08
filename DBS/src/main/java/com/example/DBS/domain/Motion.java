@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * 모션 Entity
+ */
 @Entity
 @Getter @Setter
 public class Motion {
@@ -13,5 +16,6 @@ public class Motion {
     @Column(name = "motion_id")
     private Long id;
 
+    //모션 이름
     private String name;
 }

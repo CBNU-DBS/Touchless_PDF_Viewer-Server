@@ -1,5 +1,10 @@
 package com.example.DBS.domain;
 
+/**
+ * 성공 여부만 반환하는 공통 ResponseBody 클래스
+ * resultCode == 0 : 성공, 음수 : 실패
+ * resultMsg == 에러 메시지
+ */
 public class BaseResponseBody {
     protected int resultCode;
     protected String resultMsg;

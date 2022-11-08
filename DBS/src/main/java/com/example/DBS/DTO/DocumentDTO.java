@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * 문서 DTO
+ */
 @Getter @Setter
 public class DocumentDTO {
     private Long id;

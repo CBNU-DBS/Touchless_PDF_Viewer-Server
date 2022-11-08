@@ -6,6 +6,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+/**
+ * 문서 Entity
+ */
 @Entity
 @Getter @Setter
 public class Document extends BaseTimeEntity {
@@ -19,6 +22,7 @@ public class Document extends BaseTimeEntity {
     @Column(name = "doc_key")
     private String key;
 
+    // 사용자
     @ManyToOne(fetch = FetchType.LAZY)      // 1:N 관계에서 N쪽에 붙임, FetchType.LAZY = 지연로딩 설정
     @JoinColumn(name = "user_id")           // FK 이름 설정
     @JsonBackReference

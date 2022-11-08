@@ -40,6 +40,11 @@ public class DocumentRepository {
                 .getResultList();
     }
 
+    /**
+     * 문서 제목으로 문서 찾기
+     * @param title
+     * @return
+     */
     public List<Document> findByTitle(String title){
         return em.createQuery("SELECT d FROM Document d WHERE d.title = :title", Document.class)
                 .setParameter("title", title)

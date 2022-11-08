@@ -3,6 +3,9 @@ package com.example.DBS.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 모션 기능 설정 DTO
+ */
 @Getter
 @Setter
 public class MotionFunctionDTO {

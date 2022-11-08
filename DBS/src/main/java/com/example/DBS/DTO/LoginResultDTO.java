@@ -6,6 +6,9 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 로그인 결과 DTO
+ */
 @Getter
 @Setter
 public class LoginResultDTO {

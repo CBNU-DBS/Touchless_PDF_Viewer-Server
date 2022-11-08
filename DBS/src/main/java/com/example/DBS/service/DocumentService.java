@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Document 관련 서비스 로직
+ */
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -19,6 +22,10 @@ public class DocumentService {
     private final DocumentRepository documentRepository;
     private final UserRepository userRepository;
 
+    /**
+     * 문서 저장 서비스 로직
+     * @param documentDTO
+     */
     @Transactional
     public void saveDocument(DocumentDTO documentDTO){
 
@@ -43,6 +50,11 @@ public class DocumentService {
         documentRepository.save(document);
     }
 
+    /**
+     * userId로 문서 리스트 조회하는 서비스 로직
+     * @param userId
+     * @return
+     */
     public List<DocumentDTO> findDocumentByUser(Long userId){
         List<Document> findDocuments = null;
         List<DocumentDTO> result = new ArrayList<>();

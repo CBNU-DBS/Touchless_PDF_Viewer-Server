@@ -3,7 +3,6 @@ package com.example.DBS.controller;
 import com.example.DBS.DTO.DocumentDTO;
 import com.example.DBS.domain.BaseResponseBody;
 import com.example.DBS.domain.CustomResponseBody;
-import com.example.DBS.domain.Document;
 import com.example.DBS.service.DocumentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,11 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Document 관련 컨트롤러 파일
+ */
 @RestController
 @RequiredArgsConstructor
 public class DocumentController {
     private final DocumentService documentService;
 
+    /**
+     * Document 저장 API*
+     * @param requestBody
+     * @return
+     */
     @PostMapping("/document")
     public ResponseEntity<BaseResponseBody> saveDocument(@RequestBody DocumentDTO requestBody){
         BaseResponseBody responseBody = new BaseResponseBody("문서 저장 성공");
@@ -36,6 +43,11 @@ public class DocumentController {
         return ResponseEntity.ok(responseBody);
     }
 
+    /**
+     * Document 리스트 조회 API*
+     * @param userId
+     * @return
+     */
     @GetMapping("/document")
     public ResponseEntity<CustomResponseBody<DocumentDTO>> findDocumentsByUser(@RequestParam(name = "userId") Long userId){
         CustomResponseBody<DocumentDTO> responseBody = new CustomResponseBody<>("문서 검색 성공");

@@ -14,11 +14,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * User 관련 컨트롤러*
+ */
 @RestController
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
+    /**
+     * User 회원가입 API*
+     * @param user
+     * @return
+     */
     @PostMapping("/users")
     public ResponseEntity<BaseResponseBody> signup (@RequestBody User user){
         BaseResponseBody responseBody = new CustomResponseBody<>("회원가입 성공");
@@ -37,6 +45,11 @@ public class UserController {
         return ResponseEntity.ok().body(responseBody);
     }
 
+    /**
+     * 로그인 API
+     * @param user
+     * @return
+     */
     @PostMapping("/users/login")
     public ResponseEntity login (@RequestBody User user){
         CustomResponseBody<LoginResultDTO> responseBody = new CustomResponseBody<>("로그인 성공");
@@ -64,6 +77,11 @@ public class UserController {
         return ResponseEntity.ok().body(responseBody);
     }
 
+    /**
+     * 비밀번호 변경 API
+     * @param user
+     * @return
+     */
     @PostMapping("/users/changepw")
     public ResponseEntity changepw (@RequestBody User user){
         CustomResponseBody<User> responseBody = new CustomResponseBody<>("비밀번호 변경 성공");

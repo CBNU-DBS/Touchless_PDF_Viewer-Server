@@ -6,6 +6,10 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 성공여부, 데이터를 같이 반환하는 공용 ResponseBody 클래스
+ * @param <T>
+ */
 @Getter
 @Setter
 public  class CustomResponseBody<T> extends BaseResponseBody{

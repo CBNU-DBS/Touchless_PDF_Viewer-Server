@@ -16,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 모션 기능 관련 서비스 로직
+ */
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -24,6 +27,11 @@ public class MotionFunctionService {
     private final UserRepository userRepository;
     private final MotionRepository motionRepository;
     private final FuncRepository funcRepository;
+
+    /**
+     * 모션 기능 설정 저장 서비스 로직
+     * @param motionFunctionList
+     */
     @Transactional
     public void saveMotionFunction(List<MotionFunctionDTO> motionFunctionList){
         Long userId = motionFunctionList.get(0).getUserId();
@@ -47,6 +55,11 @@ public class MotionFunctionService {
         }
     }
 
+    /**
+     * userId로 모션 설정 조회하는 서비스 로직
+     * @param userId
+     * @return
+     */
     public List<MotionFunctionDTO> getMotionFunctionByUser(Long userId){
         User user = userRepository.findOne(userId);
         List<MotionFunctionDTO> result = new ArrayList<>();

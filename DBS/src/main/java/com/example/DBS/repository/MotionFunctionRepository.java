@@ -13,10 +13,19 @@ import java.util.List;
 public class MotionFunctionRepository {
     private final EntityManager em;
 
+    /**
+     * 모션 기능 설정 저장
+     * @param motionFunction
+     */
     public void save(MotionFunction motionFunction){
         em.persist(motionFunction);
     }
 
+    /**
+     *  사용자에 해당하는 모션 기능 설정 조회
+     * @param user
+     * @return
+     */
     public List<MotionFunction> findByUser(User user){
         return em.createQuery("SELECT mf FROM MotionFunction mf WHERE mf.user = :user", MotionFunction.class)
                 .setParameter("user", user)
