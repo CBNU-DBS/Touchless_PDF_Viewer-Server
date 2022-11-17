@@ -37,7 +37,7 @@ public class DocumentService {
         if(findUser == null){
             throw new IllegalStateException("사용자가 유효하지 않습니다.");
         }
-        List<Document> findDocument = documentRepository.findByTitle(documentDTO.getTitle());
+        List<Document> findDocument = documentRepository.findByTitleAndUser(documentDTO.getTitle(), findUser);
         if(!findDocument.isEmpty()){
             throw new IllegalStateException("문서 제목이 중복됩니다.");
         }

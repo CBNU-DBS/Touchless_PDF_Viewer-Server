@@ -41,13 +41,15 @@ public class DocumentRepository {
     }
 
     /**
-     * 문서 제목으로 문서 찾기
-     * @param title 문서 제목
-     * @return 문서 리스트
+     * 문서 제목, 유저로 문서 찾기*
+     * @param title
+     * @param user
+     * @return
      */
-    public List<Document> findByTitle(String title){
-        return em.createQuery("SELECT d FROM Document d WHERE d.title = :title", Document.class)
+    public List<Document> findByTitleAndUser(String title, User user){
+        return em.createQuery("SELECT d FROM Document d WHERE d.title = :title AND d.user = :user", Document.class)
                 .setParameter("title", title)
+                .setParameter("user", user)
                 .getResultList();
     }
 
