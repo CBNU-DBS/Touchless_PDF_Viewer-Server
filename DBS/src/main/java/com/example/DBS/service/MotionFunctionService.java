@@ -39,7 +39,7 @@ public class MotionFunctionService {
         Motion motion = null;
         Func func = null;
         for(MotionFunctionDTO motionFunctionDTO: motionFunctionList){
-            if(motionFunctionDTO.getUserId() != userId){
+            if(!motionFunctionDTO.getUserId().equals(userId)){
                 throw new IllegalStateException("유저 ID가 잘못되었습니다.");
             }
             motion = motionRepository.findByName(motionFunctionDTO.getMotion());
