@@ -3,6 +3,7 @@ package com.example.DBS.repository;
 import com.example.DBS.domain.MotionFunction;
 import com.example.DBS.domain.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,12 @@ public class MotionFunctionRepository {
         return em.createQuery("SELECT mf FROM MotionFunction mf WHERE mf.user = :user", MotionFunction.class)
                 .setParameter("user", user)
                 .getResultList();
+    }
+
+    public void DeleteByUser(User user){
+        em.createQuery("DELETE FROM MotionFunction mf WHERE mf.user = :user")
+                .setParameter("user", user)
+                .executeUpdate();
     }
 
 }

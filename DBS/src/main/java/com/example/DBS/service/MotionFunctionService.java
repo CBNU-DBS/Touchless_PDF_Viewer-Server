@@ -10,6 +10,7 @@ import com.example.DBS.repository.MotionFunctionRepository;
 import com.example.DBS.repository.MotionRepository;
 import com.example.DBS.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,6 +37,7 @@ public class MotionFunctionService {
     public void saveMotionFunction(List<MotionFunctionDTO> motionFunctionList){
         Long userId = motionFunctionList.get(0).getUserId();
         User user = userRepository.findOne(userId);
+        motionFunctionRepository.DeleteByUser(user);
         Motion motion = null;
         Func func = null;
         for(MotionFunctionDTO motionFunctionDTO: motionFunctionList){
